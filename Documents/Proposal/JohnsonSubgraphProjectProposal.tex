@@ -1,0 +1,114 @@
+\documentclass[12]{article}
+
+\usepackage{geometry}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{booktabs} % See the package documentation for guidelines on formal tables: https://ctan.org/pkg/booktabs
+\usepackage{verbatim} % Used to typeset, for example, code snippets or pseudo-code for algorithms.
+\usepackage{dsfont} % Extra fontset for helpful mathematics symbols, e.g. \mathds{1}
+\usepackage{etoolbox} % Used to allow boolean variables for use in the title page
+\usepackage{import}
+\usepackage{lipsum}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\set}[2]{\left\{#1 \ : \ #2\right\}}
+\newcommand{\conv}[1]{\underset{#1}\longrightarrow}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Supp}[0]{\ \mathrm{Supp}\ }
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\Cross}{\mathbin{\tikz [x=1.4ex,y=1.4ex,line width=.2ex] \draw (0,0) -- (1,1) (0,1) -- (1,0);}}
+% A custom restriction command, indicate that a function is being restricted to a subset of its domain.
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+% Custom math operators (analogous to \lim, \sup, etc).
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\subspan}{span}
+\DeclareMathOperator{\sgn}{sgn}
+% Custom List of ... commands. See the tocloft package documentation for more details.
+% Any new lists of --- (for example, a List of Abbreviations, a List of Terms, etc) can be defined using the functionality in the package tocloft. This allows all lists in the preliminary pages to share the same formatting (as per UVic guidelines). 
+% The following is a sample that you could use to include a list of abbreviations in the document.
+% You could also create a glossary in a similar way.
+%\newlistof[section]{abbrevs}{abr}{List of Abbreviations}
+%\newcommand{\abbrevs}[2]{%   The command takes in two parameters: a phrase and its abbreviation.
+	%	\refstepcounter{abbrevs}#1 (#2)% This line associates a number with the entry and typesets something there.
+	%	\addcontentsline{abr}{abbrevs}{\numberline{}#2 - #1}}	% This line adds a line to the List of Abbreviations.
+%--------------------------------------------------------------------------------------%
+%								THEOREM ENVIRONMENTS
+%--------------------------------------------------------------------------------------%
+% Again, feel free to replace these with whatever is best for you! Look at the amsthm package documentation for more info.
+% Tips for theorem numbering: While it's up to you, you might wish to try a system that makes it easiest to find results, and if two systems are equally easy to use, then use the simpler of the two. Generally you will have chapters or sections in your document, so numbering at least 1.1, 1.2, 2.1, 2.2, 2.3, ... might be good; if you also have subsections, maybe you could do 1.1.1, 1.1.2, 1.2.1, 1.2,2, etc, together with numbered subsections. You might also do unnumbered subsections and use only section numbering, if the subsections tend to be short.
+% These environments are theorem-like; they have bold labels and italicized text. 
+\newtheorem{thm}{Theorem}[section] % Numbering is impacted by [chapter]; could do [section] or [subsection] also.
+\newtheorem{lem}{Lemma} % The [thm] argument says to number Lemma in sequence with Theorem.
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{question}{Question}
+% These environments are unnumbered and will not count toward the numbering.
+%\newtheorem*{question}{Question}
+\newtheorem*{answer}{Answer}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem*{claim}{Claim}
+% These environments are definitions; they have a different style (bold label, standard font).
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % These definitions are also numbered in sequence with Theorem.
+\newtheorem{eg}{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{obs}{Observation}
+
+\title{ \vspace{-3cm} Johnson Subgraph Problem Proposal }
+\author{Tao Gaede}
+
+\begin{document}
+	\maketitle
+	
+	\begin{abstract}
+		Summary
+	\end{abstract}
+
+	\section{Preliminaries}
+	Let $J = J(n,k,i)$ be the graph with vertex set ${\Z_n \choose k}$ and for every $u,v \in V(J)$, $uv \in E(J)$ if and only if $|u \cap v| = k-i$ or equivalently $|u \Delta v| = 2i$.  We call $J(n,k,i)$ a \emph{Johnson graph}.
+	
+	We are interested in a particular class of induced subgraphs of $J(n,k,i)$, but we briefly introduce general Johnson induced subgraphs (JISs).  General induced subgraphs of $J(n,k,i)$ have apparently only been studied recently in the last 15 years or so. [Brief survey of literature on JISs]
+	
+	The class of JISs we aim to study are those whose vertices are characterized by a given pattern of consecutive differences.  By ``pattern of consecutive differences", we mean the following: Let $X \subseteq \Z_n$ and suppose $X = \{x_0,\ldots,x_{k-1}\}$ where $x_0 \leq \cdots \leq x_{k-1}$.  Then the pattern of consecutive differences for $X$, denoted $N_X$, is $N_X = (x_1-x_0,x_2-x_1,\ldots,x_{k-1} - x_{k-2}, x_0 - x_{k-1})$; additionally, we consider $N_X$ to be rotationally invariant, so all we care about is the cyclic ordering of the consecutive differences.  Note that $N_X$ is an \emph{integer necklace with $k$ beads of at most $n$ colours}.    Let $N$ be an integer necklace with $k$ beads of at most $n$ colours.  Then define $\mathcal{F}_N \subset {\Z_n \choose k}$ where for every $X \in \mathcal{F}_N$, $N_X = N$.  Observe that $\mathcal{F}_N$ is closed under taking translates, so for every $X,Y \in \mathcal{F}_N$, $Y = X + t$ for some $t \in \Z_n$ and $|\mathcal{F}_N| = n$.  The primary structure of interest is the subgraph of $J(n,k,i)$ induced by $\mathcal{F}_N$ for a given $n,k,i$, and $N$.
+	
+	[Examples of JISs for]
+	
+	\section{Initial Questions}
+	
+	\begin{question}
+		Let $N_1$ and $N_2$ be distinct integer necklaces with $k$ beads of at most $n$ colours.  Let $G$ be the subgraph of $J(n,k,i)$ induced by $\mathcal{F}_{N_1} \cup \mathcal{F}_{N_2}$.  Does there exist an integer necklace $N'$ with $k'$ beads of at most $n'$ colours such that $G \equiv H$ where $H$ is the subgraph of $J(n',k',i')$ induced by $\mathcal{F}_{N'}$?
+	\end{question}
+	
+	\bibliographystyle{plain}
+	\bibliography{bibliography}
+	
+\end{document}
