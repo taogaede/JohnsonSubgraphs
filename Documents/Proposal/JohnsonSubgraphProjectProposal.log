@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.26)  30 JUL 2022 19:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.26)  31 JUL 2022 12:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -877,20 +877,20 @@ LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
 ) [1
 
-{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
 (./JohnsonSubgraphProjectProposal.aux)
 Package rerunfilecheck Info: File `JohnsonSubgraphProjectProposal.out' has not 
 changed.
 (rerunfilecheck)             Checksum: 5A0C6E2328988A56BB498C7CF73D28D0;239.
  ) 
 Here is how much of TeX's memory you used:
- 24669 strings out of 478037
- 458079 string characters out of 5843053
- 829508 words of memory out of 5000000
- 42676 multiletter control sequences out of 15000+600000
+ 24722 strings out of 478037
+ 459351 string characters out of 5843053
+ 830508 words of memory out of 5000000
+ 42728 multiletter control sequences out of 15000+600000
  477768 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,6n,89p,1174b,434s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,6n,89p,1174b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2022/texmf-dis
@@ -908,10 +908,10 @@ m/cmsy5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
 b><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/tex
 live/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive
 /2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on JohnsonSubgraphProjectProposal.pdf (1 page, 188664 bytes).
+Output written on JohnsonSubgraphProjectProposal.pdf (2 pages, 189573 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
- 6 named destinations out of 1000 (max. 500000)
+ 128 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
+ 7 named destinations out of 1000 (max. 500000)
  29 words of extra memory for PDF output out of 10000 (max. 10000000)
 
