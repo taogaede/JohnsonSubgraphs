@@ -102,17 +102,17 @@
 	\end{obs}
 	
 	\begin{question}[Characterizing Unions]
-		Let $N_1$ and $N_2$ be distinct integer necklaces with $k$ beads of at most $n$ colours.  Does there exist an integer necklace $N$ with $k'$ beads of at most $2n$ colours such that $JS(\mathcal{F}_{N_1} \cup \mathcal{F}_{N_2},i) \simeq JS(\mathcal{F}_N,i)$?  If so, what is $N$?  How does the structure of $N$ relate to $N_1$ and $N_2$?  Can we define a binary operation $*$ on integer necklaces where $N_1 * N_2 = N$?
+		Let $N_1$ and $N_2$ be distinct integer necklaces with $k$ beads of at most $n_1$ and $n_2$ colours, respectively.  Does there exist an integer necklace $N$ with $k'$ beads of at most $|\mathcal{F}_{N_1} \cup \mathcal{F}_{N_2}|$ colours such that $JS(\mathcal{F}_{N_1} \cup \mathcal{F}_{N_2},i) \simeq JS(\mathcal{F}_N,i)$?  If so, what is $N$?  How does the structure of $N$ relate to that of $N_1$ and $N_2$?  Can we define a binary operation $*$ on integer necklaces where $N_1 * N_2 = N$?
 	\end{question}
 	
-	
+	Perhaps the place to start for Question 1 is to restrict $N_2$ to be the ``flip" of $N_1$.
 	
 	\begin{question}[Structure of Degree Sequence]
 		Let $N$ be an integer necklace with $k$ beads of at most $n$ colours.  For $i \in \{1,\ldots,k-1\}$, let $d_i$ be the degree of $JS(\mathcal{F}_N,i)$.  
 		\begin{itemize}
 			\item What are the properties of the sequence $D = (d_1,\ldots,d_{k-1})$?
-			\item How are $N$ and $D$ related?
-			\item Given $JS(\mathcal{F}_N,i)$, can we determine $d_i$?
+			\item How are $N$ and $D$ related?  Is it possible to determine $D$ without having to generate all of the graphs $JS(\mathcal{F}_N,i)$ for all $i$?
+			\item Does every necklace $N$ have a unique degree sequence $D$?  Or can there be necklaces $N$ and $N'$ such that each correspond to $D$?
 		\end{itemize}
 		  
 	\end{question}
