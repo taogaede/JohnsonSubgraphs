@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tkz-berge}
+\usepackage{tkz-graph}
+\usepackage{booktabs} % See the package documentation for guidelines on formal tables: https://ctan.org/pkg/booktabs
+\usepackage{verbatim} % Used to typeset, for example, code snippets or pseudo-code for algorithms.
+\usepackage{dsfont} % Extra fontset for helpful mathematics symbols, e.g. \mathds{1}
+\usepackage{etoolbox} % Used to allow boolean variables for use in the title page
+\usepackage{import}
+\usepackage{lipsum}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{mathbbol}
+\usepackage{caption}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\set}[2]{\left\{#1 \ : \ #2\right\}}
+\newcommand{\conv}[1]{\underset{#1}\longrightarrow}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Supp}[0]{\ \mathrm{Supp}\ }
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclareMathOperator{\lcm}{lcm}
+
+\newcommand{\Cross}{\mathbin{\tikz [x=1.4ex,y=1.4ex,line width=.2ex] \draw (0,0) -- (1,1) (0,1) -- (1,0);}}
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		#1 % the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#2} % this is the delimiter
+}}
+% Custom math operators (analogous to \lim, \sup, etc).
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\od}{od}
+\DeclareMathOperator{\subspan}{span}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\rad}{rad}
+%\DeclareMathOperator{\span}{span}
+
+\newtheorem{thm}{Theorem}[section] % Numbering is impacted by [chapter]; could do [section] or [subsection] also.
+\newtheorem{lem}{Lemma} % The [thm] argument says to number Lemma in sequence with Theorem.
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{question}{Question}
+% These environments are unnumbered and will not count toward the numbering.
+%\newtheorem*{question}{Question}
+\newtheorem*{answer}{Answer}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem*{claim}{Claim}
+% These environments are definitions; they have a different style (bold label, standard font).
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % These definitions are also numbered in sequence with Theorem.
+\newtheorem{eg}{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{obs}{Observation}
+
+\title{ \vspace{-3cm} Orbit Intersections Working Notes}
+\author{Tao Gaede}
+
+\begin{document}
+	\maketitle
+	
+	Let $A \in {\Z_n \choose k}$.  We are interested in the differences of $A$, so it is often sufficient to assume $A$ is translated with an element at $0$.  So, we may write $A = \{0, d_1, d_1+d_2, \ldots, \sum_{i=1}^{k-1}d_i\}$.  Set $d_0 := 0$.  Then the differences of $A$ are of the form $\pm \sum_{i=1}^{j}d_i - d_\ell$ for all $j \in [k-1]$ and $0 \leq \ell < j$.  Let $T: \Z_n \mapsto \Z_n$ be a bijection; in this document, we assume that $T$ is a rotation.  Then the orbit of $A$ under $T$ is written as $O(A) := \{T^i(A): i \geq 0\}$.  The value $t := |O(A)|$ is called the order of $O(A)$.  The distance $k-\lambda$ Hamming graph of $O(A)$, denoted $H[O(A),k-\lambda]$ is the graph with vertex set $O(A)$ wherein two vertices are adjacent if and only if they share exactly $\lambda$ elements.
+	
+	\begin{lem}\label{Lemma-DifferenceSetsAreCliques}
+		Let $A \in {\Z_n \choose k}$.  Then $G[O(A),k-\lambda]$ is a complete graph if and only if $A$ is a $(n,k,\lambda)$-difference set.
+	\end{lem}
+	\begin{proof}
+		Set $G := H[O(A),k-\lambda]$.  Vertices $T^r(A)$ and $T^s(A)$ are adjacent if and only if $|T^r(A) \cap T^s(A)| = \lambda$ if and only if $|A \cap T^{s-r}(A)| = \lambda$ if and only if there are exactly $\lambda$ differences in $A$ of the form $s-r \in \Z_n \setminus \{0\}$.  Thus $G$ is a complete graph if and only if each non-zero difference in $A$ occurs exactly $\lambda$ times.  \qedhere
+	\end{proof}
+	
+	Lemma \ref{Lemma-DifferenceSetsAreCliques} can be seen as a corollary of Lemma \ref{Lemma-DegreeMultiplicities} below.  First, we introduce some more notation.  Write $A = \{0, a_1, a_1+a_2, \ldots, \sum_{i=1}^{k-1}a_i\}$.  Let $j \in [k-1]$ and $0 \leq \ell < j$.  Set $\alpha(j,\ell) := \sum_{i=1}^{j}a_i - a_\ell$.  Then the difference multiset of $A$ is $\Delta(A) := \{\pm \alpha(j,\ell)\}$.
+
+	\begin{lem}\label{Lemma-DegreeMultiplicities}
+		For each $\lambda \in \{0,1, \ldots, k-1\}$, the degree of $H[O(A),k-\lambda]$ is equal to the number of distinct difference values in $\Delta(A)$ with multiplicity $\lambda$.
+	\end{lem}
+	\begin{proof}
+		Set $G := H[O(A),k-\lambda]$.  Since $G$ is vertex-transitive, it is sufficient to consider only the neighbourhood of $A$.  Note that $T^i(A)$ is adjacent to $A$ if and only if there exist distinct $j_1, j_2, \ldots, j_\lambda \in \{0, 1, \ldots, k-1\}$, and $x_1, x_2, \ldots, x_\lambda \in T^i(A)$ such that 
+		$$A \cap T^i(A) = \{a_{j_1} + i, a_{j_2} +i, \ldots, a_{j_{\lambda}} + i\} = \{x_1, x_2, \ldots, x_\lambda\}.$$
+		This statement is equivalent to $i$ being a difference of $A$ occurring exactly $\lambda$ times.  Thus $T^i(A)$ is adjacent to $A$ if and only if there is a difference value $i$ with multiplicity exactly $\lambda$ in $\Delta(A)$.  It follows that the degree of $A$ in $G$ is 
+		$$\delta := |\{i \in [n-1]: \text{$i$ has multiplicity exactly $\lambda$ in $\Delta(A)$}\}|,$$
+		and so $G$ is $\delta$-regular. \qedhere
+	\end{proof}
+
+	\begin{question}\label{Question-OrbitUnionsCharacterization}
+		Let $A, B \in {\Z_n \choose k}$.  Characterize the structure of $H[O(A) \cup O(B), k-\lambda]$ in terms of the differences of $A$ and $B$.
+	\end{question}
+
+	Write $B = \{0, b_1, b_1+b_2, \ldots, \sum_{i=1}^{k-1}b_i\}$.  Let $j \in [k-1]$ and $0 \leq \ell < j$.  Set $\beta(j,\ell) := \sum_{i=1}^{j}b_i - b_\ell$.  Then the difference multiset of $B$ is $\Delta(B) := \{\pm \beta(j,\ell)\}$.  
+	
+	To approach Question \ref{Question-OrbitUnionsCharacterization}, Lemma \ref{Lemma-DegreeMultiplicities} suggests that it is useful to study how $\Delta(A)$ and $\Delta(B)$ intersect.  Clearly, $H[O(A),k-\lambda]$ and $H[O(B),k-\lambda]$ are contained in $H[O(A) \cup O(B), k-\lambda]$. So, the interesting problem is about understanding the edges joining vertices in $O(A)$ and $O(B)$.
+	
+	Set $G := H[O(A) \cup O(B), k-\lambda]$.  Note that $G$ is not necessarily vertex transitive, since $H[O(A), k-\lambda]$ and $H[O(B),k-\lambda]$ can have distinct degrees.  However, there are at most two distinct degrees since the neighbourhoods of vertices restricted to the other orbit all have equal cardinality.  So, we may find its degrees by considering the neighbourhood of any one vertex in each part.  Notice that $T^{i_1}(A)$ and $T^{i_2}(B)$ are adjacent in $G$ if and only if $A$ and $T^{i_2-i_1}(B)$ are adjacent in $G$.  So, given Lemma \ref{Lemma-DegreeMultiplicities}, to determine the degrees of $G$, it is sufficient to consider only the neighbourhood of $A$ restricted to $O(B)$ (and that of $B$ restricted to $O(A)$).  Indeed, the following proposition may be deduced using a similar proof as in Lemma \ref{Lemma-DegreeMultiplicities}:
+	
+	\begin{lem}
+		Let $\lambda \in \{0, 1, \ldots, k-1\}$.  Let $\delta(A)$ be the degree of $H[O(A),k-\lambda]$ and let $\delta(A,B)$ be the number of distinct difference values in $\Delta(A) \cap \Delta(B)$ with multiplicity exactly $\lambda$.  Then the two distinct vertex degrees in $H[O(A) \cup O(B), k-\lambda]$ are $\delta(A) + \delta(A,B)$ and $\delta(B) + \delta(A,B)$.
+	\end{lem}
+	\begin{proof}
+		Set $G:= H[O(A) \cup O(B), k-\lambda]$.  By similar reasoning to the proof of Lemma \ref{Lemma-DegreeMultiplicities}, the vertex $A$ is adjacent to $T^i(B)$ if and only if $i$ occurs with multiplicity exactly $\lambda$ in $\Delta(A) \cap \Delta(B)$.  Since the degree sums between $O(A)$ and $O(B)$ are equal, and $H[O(A),k-\lambda]$ is $\delta(A)$-regular, it follows that the neighbourhood of each vertex in $G$, restricted to the other orbit, has the same cardinality.  Since there are $\delta(A,B)$ difference values in $\Delta(A) \cap \Delta(B)$ with multiplicity exactly $\lambda$, it follows that the vertices in $O(A)$ have degree $\delta(A) + \delta(A,B)$ and those of $O(B)$ have degree $\delta(B) + \delta(A,B)$. \qedhere
+	\end{proof}
+	So, to better understand the structure of $H[O(A) \cup O(B), k-\lambda]$, it is probably a good idea to explore these difference multisets!
+	
+\end{document}
