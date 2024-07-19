@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.26)  11 JUN 2024 10:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.26)  13 JUN 2024 12:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -908,26 +908,42 @@ LaTeX Font Info:    Trying to load font information for U+bbold on input line 8
 
 (c:/texlive/2022/texmf-dist/tex/latex/bbold/Ubbold.fd)
 
+LaTeX Warning: No \author given.
+
+(./OrbitIntersections-WorkingNotes.toc)
+\tf@toc=\write5
+\openout5 = `OrbitIntersections-WorkingNotes.toc'.
+
+
+
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 89.
+(amsmath)                 on input line 91.
 
 [1
 
-{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-(./OrbitIntersections-WorkingNotes.aux)
+{c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 169.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 169.
+
+[4] [5] (./OrbitIntersections-WorkingNotes.aux)
 Package rerunfilecheck Info: File `OrbitIntersections-WorkingNotes.out' has not
  changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: 5EEC9B927C2A76E919476C30F7738BC0;582.
  ) 
 Here is how much of TeX's memory you used:
- 26213 strings out of 478037
- 487885 string characters out of 5843053
- 875441 words of memory out of 5000000
- 44186 multiletter control sequences out of 15000+600000
- 479397 words of font info for 70 fonts, out of 8000000 for 9000
+ 26261 strings out of 478037
+ 488580 string characters out of 5843053
+ 872675 words of memory out of 5000000
+ 44213 multiletter control sequences out of 15000+600000
+ 482134 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,6n,131p,923b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,131p,1368b,539s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2022/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb><c:/te
 xlive/2022/texmf-dist/fonts/type1/public/bbold-type1/bbold7.pfb><c:/texlive/202
 2/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-d
@@ -939,12 +955,13 @@ nts/cm/cmmi8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 /texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/20
 22/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2022/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmti12.pfb>
-Output written on OrbitIntersections-WorkingNotes.pdf (2 pages, 144630 bytes).
+type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2022/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmti12.pfb>
+Output written on OrbitIntersections-WorkingNotes.pdf (5 pages, 172836 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 163 PDF objects out of 1000 (max. 8388607)
+ 124 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 

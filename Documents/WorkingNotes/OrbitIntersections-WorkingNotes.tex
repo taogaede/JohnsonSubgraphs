@@ -81,13 +81,16 @@
 \newtheorem{obs}{Observation}
 
 \title{ \vspace{-3cm} Orbit Intersections Working Notes}
-\author{Tao Gaede}
+%\author{Tao Gaede}
 
 \begin{document}
 	\maketitle
+	\tableofcontents
 	
+	\section{Introduction}
 	Let $A \in {\Z_n \choose k}$.  We are interested in the differences of $A$, so it is often sufficient to assume $A$ is translated with an element at $0$.  So, we may write $A = \{0, d_1, d_1+d_2, \ldots, \sum_{i=1}^{k-1}d_i\}$.  Set $d_0 := 0$.  Then the differences of $A$ are of the form $\pm \sum_{i=1}^{j}d_i - d_\ell$ for all $j \in [k-1]$ and $0 \leq \ell < j$.  Let $T: \Z_n \mapsto \Z_n$ be a bijection; in this document, we assume that $T$ is a rotation.  Then the orbit of $A$ under $T$ is written as $O(A) := \{T^i(A): i \geq 0\}$.  The value $t := |O(A)|$ is called the order of $O(A)$.  The distance $k-\lambda$ Hamming graph of $O(A)$, denoted $H[O(A),k-\lambda]$ is the graph with vertex set $O(A)$ wherein two vertices are adjacent if and only if they share exactly $\lambda$ elements.
 	
+	\section{Preliminaries}
 	\begin{lem}\label{Lemma-DifferenceSetsAreCliques}
 		Let $A \in {\Z_n \choose k}$.  Then $G[O(A),k-\lambda]$ is a complete graph if and only if $A$ is a $(n,k,\lambda)$-difference set.
 	\end{lem}
@@ -101,8 +104,8 @@
 		For each $\lambda \in \{0,1, \ldots, k-1\}$, the degree of $H[O(A),k-\lambda]$ is equal to the number of distinct difference values in $\Delta(A)$ with multiplicity $\lambda$.
 	\end{lem}
 	\begin{proof}
-		Set $G := H[O(A),k-\lambda]$.  Since $G$ is vertex-transitive, it is sufficient to consider only the neighbourhood of $A$.  Note that $T^i(A)$ is adjacent to $A$ if and only if there exist distinct $j_1, j_2, \ldots, j_\lambda \in \{0, 1, \ldots, k-1\}$, and $x_1, x_2, \ldots, x_\lambda \in T^i(A)$ such that 
-		$$A \cap T^i(A) = \{a_{j_1} + i, a_{j_2} +i, \ldots, a_{j_{\lambda}} + i\} = \{x_1, x_2, \ldots, x_\lambda\}.$$
+		Set $G := H[O(A),k-\lambda]$.  Since $G$ is vertex-transitive, it is sufficient to consider only the neighbourhood of $A$.  Note that $T^i(A)$ is adjacent to $A$ if and only if there exist distinct $x_1, x_2, \ldots, x_\lambda \in A$, and $y_1, y_2, \ldots, y_\lambda \in T^i(A)$ such that 
+		$$A \cap T^i(A) = \{x_1 + i, x_2 +i, \ldots, x_\lambda + i\} = \{y_1, y_2, \ldots, y_\lambda\}.$$
 		This statement is equivalent to $i$ being a difference of $A$ occurring exactly $\lambda$ times.  Thus $T^i(A)$ is adjacent to $A$ if and only if there is a difference value $i$ with multiplicity exactly $\lambda$ in $\Delta(A)$.  It follows that the degree of $A$ in $G$ is 
 		$$\delta := |\{i \in [n-1]: \text{$i$ has multiplicity exactly $\lambda$ in $\Delta(A)$}\}|,$$
 		and so $G$ is $\delta$-regular. \qedhere
@@ -124,6 +127,84 @@
 	\begin{proof}
 		Set $G:= H[O(A) \cup O(B), k-\lambda]$.  By similar reasoning to the proof of Lemma \ref{Lemma-DegreeMultiplicities}, the vertex $A$ is adjacent to $T^i(B)$ if and only if $i$ occurs with multiplicity exactly $\lambda$ in $\Delta(A) \cap \Delta(B)$.  Since the degree sums between $O(A)$ and $O(B)$ are equal, and $H[O(A),k-\lambda]$ is $\delta(A)$-regular, it follows that the neighbourhood of each vertex in $G$, restricted to the other orbit, has the same cardinality.  Since there are $\delta(A,B)$ difference values in $\Delta(A) \cap \Delta(B)$ with multiplicity exactly $\lambda$, it follows that the vertices in $O(A)$ have degree $\delta(A) + \delta(A,B)$ and those of $O(B)$ have degree $\delta(B) + \delta(A,B)$. \qedhere
 	\end{proof}
-	So, to better understand the structure of $H[O(A) \cup O(B), k-\lambda]$, it is probably a good idea to explore these difference multisets!
+	%So, to better understand the structure of $H[O(A) \cup O(B), k-\lambda]$, it is probably a good idea to explore these difference multisets!
 	
+	
+	\section{Reduction Lemmas}
+	
+	\begin{lem}[Component Reduction Lemma]\label{Lemma-ComponentReduction}
+		Let $A = \{0\}\cup \{\sum_{i=1}^{j}a_i:j \in [k-1]\}$, set $d := \gcd(a_1,$ $a_2,$ $\ldots,$ $a_{k-1},$ $n)$, and define $A' \subseteq \Z_{n/d}$ such that $A' = \tfrac{1}{d}A$.  Then $H[O(A), k-\lambda]$ $\cong$ $d\cdot H[O(A'), k-\lambda]$.  
+	\end{lem}
+	\begin{proof}
+		Each difference in $\Delta(A)$ is congruent to $0$ modulo $d$, and so the vertices $A+i$ and $A+j$ cannot be adjacent if $i \not\equiv j \Mod{d}$.  That is, there must be a disconnected component for each congruence class modulo $d$.  These components are isomorphic because they are equivalent translating each set by some $i \in \Z_d$.  Each component is isomorphic to $H[O(A'),k-\lambda]$ because $A$ and $A+i$ are adjacent if and only if $i$ has multiplicity $\lambda$ in $\Delta(A)$ and $i \equiv 0 \Mod{d}$ if and only if $i/d$ has multiplicity $\lambda$ in $\Delta(A')$ if and only if $A'$ and $A' + i/d$ are adjacent in $H[O(A'), k-\lambda]$. \qedhere
+	\end{proof}
+	
+	Lemma \ref{Lemma-ComponentReduction} implies that we may assume that at least one of the consecutive differences is a unit modulo $n$.  Using this fact, the following Lemma \ref{Lemma-UnitReduction} shows that we can assume further that at least one of the consecutive differences is $1$.
+	
+	\begin{lem}[Unit Reduction Lemma]\label{Lemma-UnitReduction}
+		Let $A = \{0\}\cup \{\sum_{i=1}^{j}a_i:j \in [k-1]\}$.  If there exists $u \in \Z_n$ such that $\gcd(a_\ell,n) = 1$, then, $H[O(A),k-\lambda] \cong H[O(uA), k-\lambda]$.
+	\end{lem}
+	\begin{proof}
+		Recall that adjacency is determined by $\Delta(A)$.  Since for each $w,x,y,z \in A$ and unit $u \in \Z_n$, $uw-ux = uy-uz$ if and only if $w-x=y-z$, it follows that there exists a bijection $\phi:O(A) \mapsto O(uA)$ defined by $\phi(A) = uA = \{0\}\cup \{\sum_{i=1}^{j}ua_i:j \in [k-1]\}$.  Therefore $A$ and $A+i$ are adjacent if and only if $uA$ and $uA+ui$ are adjacent, and so $\phi$ is a graph isomorphism.
+	\end{proof}
+
+	\begin{prop}[Reduction to consecutive difference 1]\label{Proposition-ReductionToConsecDiff1}
+		Let $A = \{0\}\cup \{\sum_{i=1}^{j}a_i:j \in [k-1]\}$, and set $d := \gcd(a_1,$ $a_2,$ $\ldots,$ $a_{k-1},$ $n)$.  Then there exists a set $A^*$ with a consecutive difference of $1$ such that $H[O(A),k-\lambda]$ is isomorphic to $d \cdot H[O(A^*),k-\lambda]$.
+	\end{prop}
+	\begin{proof}
+		By Lemma \ref{Lemma-ComponentReduction}, $H[O(A),k-\lambda] \cong d\cdot H[O(\tfrac{1}{d}A),k-\lambda]$.  Since $\tfrac{1}{d}A$ has a unit consecutive difference $u \in \Z_{n/d}$, it follows by Lemma \ref{Lemma-UnitReduction} that $d\cdot H[O(\tfrac{1}{d}A),k-\lambda] \cong d\cdot H[O(\tfrac{u^{-1}}{d}A), k-\lambda]$, where $\tfrac{u^{-1}}{d}A$ contains a consecutive difference with value $1$. \qedhere
+	\end{proof}
+	
+	\begin{lem}[Complement Reduction Lemma]\label{Lemma-ComplementReductionLemma}
+		Let $A = \{0\}\cup \{\sum_{i=1}^{j}a_i:j \in [k-1]\}$.  Then $H[O(A), k-\lambda] \cong H[O(-A),k-\lambda]$.
+	\end{lem}
+	\begin{proof}
+		Since $x \in \Delta(A)$ if and only if $-x \in \Delta(A)$, it follows that $\Delta(A) = \Delta(-A)$.  Because $A$ and $-A$ have the same differences, it follows that $H[O(A), k-\lambda] \cong H[O(-A),k-\lambda]$. \qedhere
+	\end{proof}
+
+	\begin{eg}
+		Suppose the consecutive differences for a set $A$ are given by $(6,10,8)$.  Then $A = \{0, 6, 16\}$.  Dividing by the gcd gives $A' = \{0, 3, 8\}$, which has consecutive difference pattern $(3,5,4)$.   By definition of gcd, one of these consecutive differences must be a unit, and in this case $5$ is a unit in $\Z_{n/d} = \Z_{12}$.  Since $5^{-1} \equiv 5 \Mod{12}$, Proposition \ref{Proposition-ReductionToConsecDiff1} implies that $H[O(A),3-\lambda] \cong 2 \cdot H[O(\tfrac{5}{2}A), 3-\lambda]$, where $5/2A = \{0,3,4\}$, which has consecutive difference pattern $(3,1,8) \sim (1,8,3)$.  Then by Lemma \ref{Lemma-ComplementReductionLemma}, $H[O(\tfrac{5}{2}A), 3-\lambda] \cong H[O(-\tfrac{5}{2}A), 3-\lambda]$, where $-5/2A$ has consecutive difference pattern $(1,3,8)$.
+	\end{eg}
+
+	\section{Characterizing Hamming Graphs for $k=3$.}
+	
+	\begin{obs}\label{Observation-AchiralIffAPWhenk=3}
+		If the consecutive difference pattern for a set $A$ with cardinality $3$ is equal to its flip (achiral), then $A$ is an arithmetic progression.
+	\end{obs}
+
+	From Observation \ref{Observation-AchiralIffAPWhenk=3}, Proposition \ref{Proposition-3APClassification} below classifies the Hamming graphs of sets with two equal consecutive differences.
+	
+	\begin{prop}\label{Proposition-3APClassification}
+		If $A$ is an arithmetic progression of length $3$, then for $1 \leq \lambda < 3$,
+		$$H[O(A), 3-\lambda] \cong \begin{cases}
+			C_n, &\text{ if $\lambda = 2$ or $\lambda = 1$ and $n \equiv 1 \Mod{2}$}	\\
+			2C_{n/2}, &\text{ if $\lambda = 1$ and $n \equiv 0 \Mod{2}$}
+		\end{cases}$$
+	\end{prop}
+	\begin{proof}
+		Write $A = \{0, a, 2a\}$.  By Proposition \ref{Proposition-ReductionToConsecDiff1}, we may assume that either $a$ or $n-2a$ is equal to $1$.  Note that if $n-2a = 1$, then $n$ is odd and $a = \floor{n/2}$, which means that $a$ is a unit in $\Z_n$; so, by Proposition \ref{Proposition-ReductionToConsecDiff1}, we may assume that $a = 1$ since $\floor{n/2}^{-1}A = \{0,1,2\}$.  Now, we have that $A = \{0,1,2\}$, which satisfies $\Delta(A) = \{1, 2, 1, -1, -2, -1\}$.  Then since $2$ and $-2$ are the only difference values with multiplicity $1$, and the only differences with multiplicity $2$ are $1$ and $-1$, by Lemma \ref{Lemma-DegreeMultiplicities}, both $H[O(A), 1]$ and $H[O(A),2]$ are $2$-regular.  When $\lambda = 2$, all edges are of the form $A+i \sim A + (i+1)$ for all $i \in \Z_n$, and so $H[O(A), 2]$ is connected and thus isomorphic to $C_n$.  When $\lambda = 1$, the edges are of the form $A + i \sim A+(i+2)$, and so result follows. \qedhere
+		%$$H[O(A),1] \cong \begin{cases}
+		%	C_n, \text{ if $n \equiv 1 \Mod{2}$}		\\
+		%	2C_{n/2}, \text{ if $n \equiv 0 \Mod{2}$}.
+		%\end{cases}$$ \qedhere
+	\end{proof}
+	
+	%\begin{prop}
+	%	Let $n$ be prime.  Then $H[O(A), 1]$ is either empty, or isomorphic to $C_{n}$.
+	%\end{prop}
+	%\begin{proof}
+	%	Write $A = \{0, a_1, a_1 + a_2\}$.  There are two cases: either $A$ is a $3$-AP or it isn't.  In other words, either $a_1 = a_2$, or $a_2 = n-a_1 - a_2$, or not.  In the first two cases, $A$ is a $3$-AP, and we may write $A = \{0, a, 2a\}$.  Thus $\Delta(A) = \{a, 2a, a, -a, -2a, -a\} = \{a^2, (2a)^1, (-a)^2, (-2a)^1\}$.  Since $\lambda = k-1 = 2$, and there are exactly two distinct differences with multiplicity $2$, it follows by Lemma \ref{Lemma-DegreeMultiplicities} that $H[O(A), 1]$ is $2$-regular.  Since $n$ is prime, $\gcd(n,a) = 1$, and thus $\{ia \Mod{n}: i \in [n]\} = \{i \Mod{n}: i \in [n]\}$, which implies that there exists a path between every pair of vertices in $H[O(A), 1]$.  So, $H[O(A),1]$ is connected and thus isomorphic to $C_n$.  
+		
+	%	When $A$ is not an AP, then $\Delta(A) = \{a_1, a_1 + a_2, a_2, -a_2, -a_1-a_2, -a_1\}$.  The only way for $H[O(A), 1]$ to have edges is if there exists a distinct difference with multiplicity exactly $2$.  However, no pair of distinct differences in $\Delta(A)$ can be equal.  Suppose otherwise, then for $x \in \Delta(A)$, we have
+	%	$$A \cap (A+x) \in \{\{0,a_1\}, \{0, a_1+a_2\}, \{a_1, a_1 + a_2\}\}.$$
+	%	Since $x \in \Z_n \setminus \{0\}$, for each $z \in A$, it cannot hold that $x + z \Mod{n} \equiv z$.  So, if $A \cap (A+x) = \{0,a_1\}$, then either $x + (a_1 + a_2) \equiv a_1 \Leftrightarrow x \equiv -a_2$ and $x + a_1 \equiv 0 \Leftrightarrow x \equiv -a_1$ or $x \equiv a_1$ and $x + (a_1 + a_2) \equiv 0 \Leftrightarrow x \equiv -a_1-a_2$.  The first case contradicts $a_1, a_2$ being non-zero, and the second case implies that $A = \{0, a_1, n-a_1\}$, which is an AP.  When $A \cap (A+x) = \{0, a_1 + a_2\}$, then either $x \equiv a_1 + a_2$ and $x + a_1 \equiv 0 \Leftrightarrow x \equiv -a_1$, in which case $A$ is an AP; or, $x + (a_1 + a_2) \equiv 0 \Leftrightarrow x \equiv -a_1 - a_2$ and $x + a_1 \equiv a_1 + a_2 \Leftrightarrow x \equiv a_2$, in which case $-a_2 \equiv a_1 + a_2$, which means $0-(a_1+a_2) \equiv (a_1 + a_2)-a_1 \equiv a_2$, and thus $A$ is an AP.  When $A \cap (A+x) = \{a_1, a_1 + a_2\}$, then either $x \equiv a_1$ and $a_1 + x \equiv a_1 + a_2$, which means $A$ is an AP; or, $x \equiv a_1 + a_2$ and $a_1 + a_2 + x \equiv a_1 \Leftrightarrow x \equiv -a_2$, which means $a_1 + 2a_2 \equiv 0$, implying that $A$ is an AP.  Therefore, if $A$ is not an AP, then all the difference values in $\Delta(A)$ have multiplicity $1$, which means that $H[O(A),1]$ must be empty in this case. \qedhere
+	%\end{proof}
+	
+	%\begin{prop}
+	%	Let $A = \{0,a_1, a_1 + a_2\}$, set $d := \gcd(a_1, a_2, n)$, and define $A' \subseteq \Z_{n/d}$ such that $A' = \{0, \tfrac{a_1}{d}, \tfrac{a_1+a_2}{d}\}$.  Then $H[O(A), k-\lambda] \cong d\cdot H[O(A'), k-\lambda]$.  
+	%\end{prop}
+	%\begin{proof}
+	%	Each difference in $\Delta(A)$ is congruent to $0$ modulo $d$, and so the vertices $A+i$ and $A+j$ cannot be adjacent if $i \not\equiv j \Mod{d}$.  That is, there must be a disconnected component for each congruence class modulo $d$.  These components are isomorphic because they are equivalent translating each set by some $i \in \Z_d$.  Each component is isomorphic to $H[O(A'),\lambda]$ because $A$ and $A+i$ are adjacent if and only if $i$ has multiplicity $\lambda$ in $\Delta(A)$ and $i \equiv 0 \Mod{d}$ if and only if $i/d$ has multiplicity $\lambda$ in $\Delta(A')$ if and only if $A'$ and $A' + i/d$ are adjacent in $H[O(A'), k-\lambda]$. \qedhere
+	%\end{proof}
+
 \end{document}
